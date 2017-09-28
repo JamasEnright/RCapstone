@@ -1,0 +1,15 @@
+Package: RCapstone
+Type: Package
+Title: Basic plots of earthquake data
+Version: 0.1.0
+Author: Jamas Enright
+Maintainer: Jamas Enright <jamasenright@gmail.com>
+Description: This provides earthquake data, a function to clean up the earthquake data,
+  and three functions for visualising the data.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1

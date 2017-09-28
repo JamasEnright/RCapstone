@@ -1,0 +1,78 @@
+---
+title: "Earthquake Visualisation"
+author: "Jamas Enright"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Earthquake Visualisation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This demonstrates how to use the RCapstone package.
+
+Start by loading in the data.
+
+```{r, results='hide'}
+library(dplyr)
+raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
+```
+
+Then we can clean up the columns using eq_clean_data and eq_location_clean.
+
+```{r}
+clean_data<-eq_clean_data(raw_data)
+clean_data<-eq_location_clean(clean_data)
+```
+
+We can now visualise this data two different ways.
+
+One is as a line plot of earthquakes over time.
+
+```{r}
+subset(clean_data,COUNTRY %in% c("USA","CHINA")) %>%
+  dplyr::filter(!is.na(EQ_PRIMARY), !is.na(DEATHS)) %>%
+  ggplot2::ggplot() +
+  ggplot2::aes(
+    x = DATE,
+    size = EQ_PRIMARY,
+    colour = DEATHS,
+    group=COUNTRY
+  ) +
+  geom_timeline()
+```
+
+And can add labels for the top sized earthquakes. Note that it will match any earthquakes to the top n values.
+
+```{r}
+subset(clean_data,COUNTRY %in% c("USA","CHINA")) %>%
+  dplyr::filter(!is.na(EQ_PRIMARY), !is.na(DEATHS)) %>%
+  ggplot2::ggplot() +
+  ggplot2::aes(
+    x = DATE,
+    size = EQ_PRIMARY,
+    colour = DEATHS,
+    group=COUNTRY,
+    label=LOCATION_NAME
+  ) +
+  geom_timeline() + 
+  geom_timeline_label()
+```
+
+The other way is spatially. We can start with a basic map.
+
+```{r}
+clean_data %>%
+  dplyr::filter(COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000) %>%
+  eq_map(annot_col = "DATE")
+```
+
+We can improve this with better annotations.
+
+```{r}
+clean_data %>%
+  dplyr::filter(COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000) %>%
+  dplyr::mutate(popup_text = eq_create_label(.)) %>%
+  eq_map(annot_col = "popup_text")
+```
+
