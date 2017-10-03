@@ -23,7 +23,7 @@
 eq_map<-function(x,annot_col){
   m <- leaflet::leaflet()
   m <- leaflet::addTiles(m)
-  m <- leaflet::addMarkers(m, lng = ~ LONGITUDE, lat = ~ LATITUDE, popup = ~ x[[annot_col]])
+  m <- leaflet::addMarkers(m, lng = x$LONGITUDE, lat = x$LATITUDE, popup = x[[annot_col]])
   m
 }
 

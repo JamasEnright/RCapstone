@@ -31,3 +31,12 @@ ggplot2::ggplot(data=c2) +
   geom_timeline() + 
   geom_timeline_label()
 
+## ------------------------------------------------------------------------
+c1<-dplyr::filter(clean_data,COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000)
+eq_map(c1,annot_col = "DATE")
+
+## ------------------------------------------------------------------------
+c1<-dplyr::filter(clean_data,COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000)
+c2<-dplyr::mutate(c1,popup_text = eq_create_label(c1))
+#eq_map(c1,annot_col = "popup_text")
+
