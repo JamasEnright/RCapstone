@@ -9,7 +9,7 @@
 #' @return This function returns the cleaned dataset
 #'
 #' @examples
-#' raw_data<-system.file("extdata", "signif.txt", package = "RCapstone")
+#' raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 #' eq_clean_data(raw_data)
 #'
 #' @importFrom lubridate ymd
@@ -35,7 +35,7 @@ eq_clean_data<-function(x){
 #'
 #' @examples
 #' library(magrittr)
-#' raw_data<-system.file("extdata", "signif.txt", package = "RCapstone")
+#' raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 #' eq_clean_data(raw_data) %>% eq_location_clean()
 #'
 #' @export

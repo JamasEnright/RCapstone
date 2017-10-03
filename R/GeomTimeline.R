@@ -59,7 +59,7 @@ GeomTIMELINE <- ggplot2::ggproto("GeomTIMELINE", ggplot2::Geom,
 #' @examples
 #' library(dplyr)
 #' library(ggplot2)
-#' raw_data<-system.file("extdata", "signif.txt", package = "RCapstone")
+#' raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 #' eq_clean_data(raw_data) %>% eq_location_clean() %>%
 #' dplyr::filter(!is.na(EQ_PRIMARY), !is.na(DEATHS)) %>%
 #' ggplot2::ggplot() +

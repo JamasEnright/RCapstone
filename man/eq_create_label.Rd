@@ -20,7 +20,7 @@ If there is no information in those fields, the tag will not be displayed.
 \examples{
 library(dplyr)
 library(lubridate)
-raw_data<-system.file("extdata", "signif.txt", package = "RCapstone")
+raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 eq_clean_data(raw_data) \%>\% eq_location_clean() \%>\%
  dplyr::filter(COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000) \%>\%
  dplyr::mutate(popup_text = eq_create_label(.)) \%>\%
