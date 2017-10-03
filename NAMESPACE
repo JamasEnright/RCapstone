@@ -6,6 +6,7 @@ export(eq_create_label)
 export(eq_map)
 
 import(dplyr)
+importFrom(magrittr,"%>%")
 importFrom(lubridate,ymd)
 importFrom(lubridate,years)
 importFrom(lubridate,year)

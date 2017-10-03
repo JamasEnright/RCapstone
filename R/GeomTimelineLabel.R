@@ -17,10 +17,9 @@ GeomTIMELINELABEL <- ggplot2::ggproto("GeomTIMELINELABEL", ggplot2::Geom,
                                       draw_panel= function(data, panel_scales, coord) {
 
                                         #sort out the data
-                                        data <- data %>%
-                                          dplyr::group_by_("group") %>%
-                                          dplyr::top_n(data$n_max[1], size) %>%
-                                          dplyr::ungroup()
+                                        data <- dplyr::group_by_(data,"group")
+                                        data <- dplyr::top_n(data,data$n_max[1], size)
+                                        data <- dplyr::ungroup(data)
 
                                         #Set y from group
                                         if(!is.null(data[1,]$group)){

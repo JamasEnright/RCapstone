@@ -21,9 +21,10 @@
 #'
 #' @export
 eq_map<-function(x,annot_col){
-  leaflet::leaflet() %>%
-    leaflet::addTiles() %>%
-    leaflet::addMarkers(data = x, lng = ~ LONGITUDE, lat = ~ LATITUDE, popup = ~ x[[annot_col]])
+  m <- leaflet::leaflet()
+  m <- leaflet::addTiles(m)
+  m <- leaflet::addMarkers(m, lng = ~ LONGITUDE, lat = ~ LATITUDE, popup = ~ x[[annot_col]])
+  m
 }
 
 #' Annotate Earthquake data
@@ -51,8 +52,7 @@ eq_map<-function(x,annot_col){
 #' @export
 eq_create_label<-function(x){
   x<-eq_location_clean(x)
-  x<-x %>%
-    dplyr::mutate(y="",
+  x<-dplyr::mutate(x,y="",
            y=ifelse(!is.na(LOCATION_NAME),
                     paste0(y,"<b>Location: </b>",LOCATION_NAME,"<br />"),
                     y),

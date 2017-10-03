@@ -14,7 +14,6 @@ This demonstrates how to use the RCapstone package.
 Start by loading in the data.
 
 ```{r, results='hide'}
-library(dplyr)
 raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 ```
 
@@ -30,9 +29,9 @@ We can now visualise this data two different ways.
 One is as a line plot of earthquakes over time.
 
 ```{r}
-subset(clean_data,COUNTRY %in% c("USA","CHINA")) %>%
-  dplyr::filter(!is.na(EQ_PRIMARY), !is.na(DEATHS)) %>%
-  ggplot2::ggplot() +
+c1<-subset(clean_data,COUNTRY %in% c("USA","CHINA"))
+c2<-dplyr::filter(c1,!is.na(EQ_PRIMARY), !is.na(DEATHS))
+ggplot2::ggplot(data=c2) +
   ggplot2::aes(
     x = DATE,
     size = EQ_PRIMARY,
@@ -45,9 +44,9 @@ subset(clean_data,COUNTRY %in% c("USA","CHINA")) %>%
 And can add labels for the top sized earthquakes. Note that it will match any earthquakes to the top n values.
 
 ```{r}
-subset(clean_data,COUNTRY %in% c("USA","CHINA")) %>%
-  dplyr::filter(!is.na(EQ_PRIMARY), !is.na(DEATHS)) %>%
-  ggplot2::ggplot() +
+c1<-subset(clean_data,COUNTRY %in% c("USA","CHINA"))
+c2<-dplyr::filter(c1,!is.na(EQ_PRIMARY), !is.na(DEATHS))
+ggplot2::ggplot(data=c2) +
   ggplot2::aes(
     x = DATE,
     size = EQ_PRIMARY,
@@ -62,17 +61,15 @@ subset(clean_data,COUNTRY %in% c("USA","CHINA")) %>%
 The other way is spatially. We can start with a basic map.
 
 ```{r}
-clean_data %>%
-  dplyr::filter(COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000) %>%
-  eq_map(annot_col = "DATE")
+c1<-dplyr::filter(clean_data,COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000)
+eq_map(c1,annot_col = "DATE")
 ```
 
 We can improve this with better annotations.
 
 ```{r}
-clean_data %>%
-  dplyr::filter(COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000) %>%
-  dplyr::mutate(popup_text = eq_create_label(.)) %>%
-  eq_map(annot_col = "popup_text")
+c1<-dplyr::filter(clean_data,COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000)
+c2<-dplyr::mutate(c1,popup_text = eq_create_label(c1))
+eq_map(c1annot_col = "popup_text")
 ```
 
