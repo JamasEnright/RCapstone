@@ -2,14 +2,19 @@
 #'
 #' @usage NULL
 #'
+#' @importFrom dplyr group_by_
+#' @importFrom dplyr top_n
+#' @importFrom dplyr ungroup
+#' @importFrom ggplot2 ggproto
+#' @importFrom ggplot2 Geom
+#' @importFrom ggplot2 aes
+#' @importFrom ggplot2 draw_key_blank
 #' @importFrom grid textGrob
 #' @importFrom grid segmentsGrob
 #' @importFrom grid unit
 #' @importFrom grid gTree
 #' @importFrom grid gList
 #' @importFrom ggplot2 ggproto
-#'
-#' @export
 GeomTIMELINELABEL <- ggplot2::ggproto("GeomTIMELINELABEL", ggplot2::Geom,
                                       required_aes = c("x"),
                                       default_aes = ggplot2::aes(size=1,y=0.5,group=NULL,n_max=5,label=NULL),

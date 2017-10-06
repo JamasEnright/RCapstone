@@ -7,13 +7,14 @@
 #' @importFrom grid pointsGrob
 #' @importFrom grid xaxisGrob
 #' @importFrom grid unit
-#' @importFrom grid .pt
-#' @importFrom grid .stroke
 #' @importFrom grid gTree
 #' @importFrom grid gList
+#' @importFrom ggplot2 .pt
+#' @importFrom ggplot2 .stroke
 #' @importFrom ggplot2 ggproto
-#'
-#' @export
+#' @importFrom ggplot2 Geom
+#' @importFrom ggplot2 aes
+#' @importFrom ggplot2 draw_key_point
 
 GeomTIMELINE <- ggplot2::ggproto("GeomTIMELINE", ggplot2::Geom,
                                  required_aes = c("x"),
