@@ -19,6 +19,7 @@
 #' @importFrom leaflet leaflet
 #' @importFrom leaflet addTiles
 #' @importFrom leaflet addMarkers
+#' @importFrom readr read_tsv
 #'
 #' @export
 eq_map<-function(x,annot_col){
@@ -50,6 +51,7 @@ eq_map<-function(x,annot_col){
 #'
 #' @importFrom dplyr %>%
 #' @importFrom dplyr mutate
+#' @importFrom readr read_tsv
 #'
 #' @export
 eq_create_label<-function(x){

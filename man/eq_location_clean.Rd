@@ -18,7 +18,7 @@ It removes country from the Location Name variable.
 If there is no location then, then just Country is supplied.
 }
 \examples{
-library(magrittr)
+library(dplyr)
 library(readr)
 raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 eq_clean_data(raw_data) \%>\% eq_location_clean()

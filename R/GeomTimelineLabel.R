@@ -74,6 +74,7 @@ GeomTIMELINELABEL <- ggplot2::ggproto("GeomTIMELINELABEL", ggplot2::Geom,
 #'  geom_timeline_label()
 #'
 #' @importFrom ggplot2 layer
+#' @importFrom readr read_tsv
 #'
 #' @export
 geom_timeline_label <- function(mapping = NULL, data = NULL, stat = "identity",

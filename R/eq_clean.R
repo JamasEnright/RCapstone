@@ -15,6 +15,7 @@
 #'
 #' @importFrom lubridate ymd
 #' @importFrom lubridate years
+#' @importFrom readr read_tsv
 #'
 #' @export
 eq_clean_data<-function(x){
@@ -35,11 +36,12 @@ eq_clean_data<-function(x){
 #' @return This function returns the modified dataset
 #'
 #' @examples
-#' library(magrittr)
+#' library(dplyr)
 #' library(readr)
 #' raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 #' eq_clean_data(raw_data) %>% eq_location_clean()
 #'
+#' @importFrom readr read_tsv
 #' @export
 eq_location_clean<-function(x){
   x$LOCATION_NAME=base::gsub("^[^:]+:\\s*", "", x$LOCATION_NAME)

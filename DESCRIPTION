@@ -6,11 +6,11 @@ Author: Jamas Enright
 Maintainer: Jamas Enright <jamasenright@gmail.com>
 Description: This provides earthquake data, a function to clean up the earthquake data,
   and three functions for visualising the data.
-License: GPL (>= 2)
+License: file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
-Imports: dplyr, ggplot2, leaflet, lubridate
+Imports: dplyr, ggplot2, leaflet, lubridate, readr
