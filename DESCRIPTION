@@ -13,3 +13,4 @@ Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
+Imports: dplyr, ggplot2, leaflet, lubridate

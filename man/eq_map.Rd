@@ -20,6 +20,7 @@ This is a method to map the earthquake data. It passes the data to leaflet
 \examples{
 library(dplyr)
 library(lubridate)
+library(readr)
 raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 eq_clean_data(raw_data) \%>\% eq_location_clean() \%>\%
  dplyr::filter(COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000) \%>\%

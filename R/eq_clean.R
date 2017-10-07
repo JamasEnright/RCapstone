@@ -9,6 +9,7 @@
 #' @return This function returns the cleaned dataset
 #'
 #' @examples
+#' library(readr)
 #' raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 #' eq_clean_data(raw_data)
 #'
@@ -35,6 +36,7 @@ eq_clean_data<-function(x){
 #'
 #' @examples
 #' library(magrittr)
+#' library(readr)
 #' raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 #' eq_clean_data(raw_data) %>% eq_location_clean()
 #'

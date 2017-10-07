@@ -18,6 +18,7 @@ It maps date to a proper date format.
 It changes Latitutude and Longitude to numbers
 }
 \examples{
+library(readr)
 raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 eq_clean_data(raw_data)
 

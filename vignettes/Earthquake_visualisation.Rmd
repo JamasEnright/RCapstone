@@ -20,8 +20,8 @@ raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapst
 Then we can clean up the columns using eq_clean_data and eq_location_clean.
 
 ```{r}
-clean_data<-eq_clean_data(raw_data)
-clean_data<-eq_location_clean(clean_data)
+clean_data<-RCapstone::eq_clean_data(raw_data)
+clean_data<-RCapstone::eq_location_clean(clean_data)
 ```
 
 We can now visualise this data two different ways.
@@ -38,7 +38,7 @@ ggplot2::ggplot(data=c2) +
     colour = DEATHS,
     group=COUNTRY
   ) +
-  geom_timeline()
+  RCapstone::geom_timeline()
 ```
 
 And can add labels for the top sized earthquakes. Note that it will match any earthquakes to the top n values.
@@ -54,22 +54,22 @@ ggplot2::ggplot(data=c2) +
     group=COUNTRY,
     label=LOCATION_NAME
   ) +
-  geom_timeline() + 
-  geom_timeline_label()
+  RCapstone::geom_timeline() + 
+  RCapstone::geom_timeline_label()
 ```
 
 The other way is spatially. We can start with a basic map.
 
 ```{r}
 c1<-dplyr::filter(clean_data,COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000)
-eq_map(c1,annot_col = "DATE")
+RCapstone::eq_map(c1,annot_col = "DATE")
 ```
 
 We can improve this with better annotations.
 
 ```{r}
 c1<-dplyr::filter(clean_data,COUNTRY == "MEXICO" & lubridate::year(DATE) >= 2000)
-c2<-dplyr::mutate(c1,popup_text = eq_create_label(c1))
-#eq_map(c1,annot_col = "popup_text")
+c2<-dplyr::mutate(c1,popup_text = RCapstone::eq_create_label(c1))
+RCapstone::eq_map(c1,annot_col = "popup_text")
 ```
 

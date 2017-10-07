@@ -29,6 +29,7 @@ By default, it will label the top n points.
 \examples{
 library(dplyr)
 library(ggplot2)
+library(readr)
 raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
 eq_clean_data(raw_data) \%>\% eq_location_clean() \%>\%
 dplyr::filter(!is.na(EQ_PRIMARY), !is.na(DEATHS)) \%>\%
