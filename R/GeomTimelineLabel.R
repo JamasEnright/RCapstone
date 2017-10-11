@@ -46,13 +46,10 @@ GeomTIMELINELABEL <- ggplot2::ggproto("GeomTIMELINELABEL", ggplot2::Geom,
 #' Label points on plot
 #'
 #' This method enchances the plot timeline function by labelling points.
-#' By default, it will label the top n points.
+#' By default, it will label the top 5 points. This is specified in the \code{n_max} parameter.
+#' The column to label the points is in the \code{label} parameter.
 #'
-#' @param x Date of earthquakes
-#' @param size [optional] Size of earthquake
-#' @param group [optional] Column indicating how the data could be grouped.
-#' @param n_max [optional] number of top values to look at
-#' @param label [optional] column to label the points.
+#' @inheritParams ggplot2::geom_label
 #'
 #' @return This function returns a graphic object
 #'

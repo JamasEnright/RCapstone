@@ -49,11 +49,12 @@ GeomTIMELINE <- ggplot2::ggproto("GeomTIMELINE", ggplot2::Geom,
 #' Plot Timeline
 #'
 #' This is a method of creating a graph that maps earthquake data along the timeline.
+#' The date should be specified as the \code{x} parameter, the size of the earthquake
+#' as the \code{size} parameter (this is optional), the numberof deaths as the \code{color}
+#' parameter (this is optional) and the \code{group} parameter to indicate how the data
+#' should be groups (this is optional).
 #'
-#' @param x Date of earthquakes
-#' @param size [optional] Size of earthquake
-#' @param color [optional] Number of Deaths
-#' @param group [optional] Column indicating how the data could be grouped.
+#' @inheritParams ggplot2::geom_point
 #'
 #' @return This function returns a graphic object
 #'
@@ -62,21 +63,20 @@ GeomTIMELINE <- ggplot2::ggproto("GeomTIMELINE", ggplot2::Geom,
 #' library(ggplot2)
 #' library(readr)
 #' raw_data<-readr::read_tsv(system.file("extdata", "signif.txt", package = "RCapstone"))
-#' eq_clean_data(raw_data) %>% eq_location_clean() %>%
+#' clean_data<-eq_clean_data(raw_data) %>% eq_location_clean() %>%
 #' dplyr::filter(!is.na(EQ_PRIMARY), !is.na(DEATHS)) %>%
 #' ggplot2::ggplot() +
 #'  ggplot2::aes(
 #'    x = DATE,
 #'    size = EQ_PRIMARY,
-#'    colour = DEATHS
+#'    colour = DEATHS,
+#'    label=LOCATION_NAME
 #'  ) +
 #'  geom_timeline()
 #'
 #' @importFrom ggplot2 layer
 #'
 #' @export
-
-
 geom_timeline <- function(mapping = NULL, data = NULL, stat = "identity",
                           position = "identity", na.rm = FALSE,
                           show.legend = NA, inherit.aes = TRUE, ...) {
